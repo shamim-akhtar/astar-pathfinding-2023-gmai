@@ -11,6 +11,8 @@ public class RectGrid : MonoBehaviour
 
   public GameObject rectGridCellPrefab;
 
+  public NPMovement npc;
+
   public Color COLOR_WALKABLE = Color.cyan;
   public Color COLOR_NON_WALKABLE = Color.black;
 
@@ -34,6 +36,7 @@ public class RectGrid : MonoBehaviour
         if(rectGridCell != null)
         {
           rectGridCell.SetInnerColor(COLOR_WALKABLE);
+          rectGridCell.index = index;
         }
       }
     }
@@ -46,6 +49,29 @@ public class RectGrid : MonoBehaviour
     {
       ToggleWalkable();
     }
+    if (Input.GetMouseButtonDown(1))
+    {
+      SetNPCDestination();
+    }
+  }
+
+  void SetNPCDestination()
+  {
+    Vector2 rayPos = new Vector2(
+      Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
+      Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
+
+    RaycastHit2D hit = Physics2D.Raycast(rayPos, Vector2.zero, 0.0f);
+    if (hit)
+    {
+      GameObject obj = hit.transform.gameObject;
+      RectGridCell rectGridCell = obj.GetComponent<RectGridCell>();
+      if(rectGridCell != null && npc != null)
+      {
+        npc.SetDestination(rectGridCell.index);
+      }
+    }
+
   }
 
   void ToggleWalkable()

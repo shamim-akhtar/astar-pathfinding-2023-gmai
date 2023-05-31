@@ -10,6 +10,7 @@ public class RectGridCell : MonoBehaviour
   SpriteRenderer innerSprite;
 
   public bool isWalkable = true;
+  public Vector2Int index = Vector2Int.zero;
 
   // Start is called before the first frame update
   void Start()
