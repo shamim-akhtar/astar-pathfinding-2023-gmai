@@ -2,16 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// The objective of this script is to be able to change the 
+// visualisation of the cell.
 public class RectGridCell : MonoBehaviour
 {
   [SerializeField]
-  SpriteRenderer outerSprite;
-  [SerializeField]
   SpriteRenderer innerSprite;
+  [SerializeField]
+  SpriteRenderer outerSprite;
 
-  public bool isWalkable = true;
   public Vector2Int index = Vector2Int.zero;
-
+  public bool isWalkable = true;
   // Start is called before the first frame update
   void Start()
   {
@@ -24,13 +25,13 @@ public class RectGridCell : MonoBehaviour
 
   }
 
-  public void SetInnerColor(Color color)
+  public void SetInnerColor(Color col)
   {
-    innerSprite.color = color;
+    innerSprite.color = col;
   }
 
-  public void SetOuterColor(Color color)
+  public void SetOuterColor(Color col)
   {
-    outerSprite.color = color;
+    outerSprite.color = col;
   }
 }
